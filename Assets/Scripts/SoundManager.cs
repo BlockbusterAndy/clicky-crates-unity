@@ -7,6 +7,7 @@ public class SoundManager : MonoBehaviour
     public AudioClip explosionSound;
     public AudioClip hitSound;
     public AudioClip specialHitSound;
+    public AudioClip wowSound;
     
     void Awake()
     {
@@ -16,6 +17,7 @@ public class SoundManager : MonoBehaviour
         explosionSound.LoadAudioData();
         hitSound.LoadAudioData();
         specialHitSound.LoadAudioData();
+        wowSound.LoadAudioData();
     }
     
     public void PlayExplosionSound()
@@ -31,5 +33,10 @@ public class SoundManager : MonoBehaviour
     public void PlaySpecialHitSound()
     {
         audioSource.PlayOneShot(specialHitSound, 1.0f);
+    }
+
+    public void PlayWowSound()
+    {
+        audioSource.PlayOneShot(wowSound, 1.0f);
     }
 }

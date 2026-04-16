@@ -1362,6 +1362,7 @@ MonoBehaviour:
   restartButton: {fileID: 1816696312}
   titleScreen: {fileID: 1136360049}
   tapParticle: {fileID: 2751497958018351626, guid: 480b29153b0a6294ba8a6085c77bc53c, type: 3}
+  wowParticle: {fileID: 7853627380938385617, guid: b6929f0840005c847acc596764b9d6f2, type: 3}
 --- !u!4 &1474254009
 Transform:
   m_ObjectHideFlags: 0
@@ -1655,6 +1656,7 @@ MonoBehaviour:
   explosionSound: {fileID: 8300000, guid: bf08ca3b9f57ccc4795ba8b2270ce036, type: 3}
   hitSound: {fileID: 8300000, guid: 6af51c901a0c36c4a9726a4d297bf8c2, type: 3}
   specialHitSound: {fileID: 8300000, guid: 375a878b5dbe2884da42cf50a188ecc7, type: 3}
+  wowSound: {fileID: 8300000, guid: 14c48a853478fa045a25bdcf7b225cf9, type: 3}
 --- !u!82 &1813174856
 AudioSource:
   m_ObjectHideFlags: 0

@@ -7,20 +7,23 @@ using TMPro;
 
 public class GameManager : MonoBehaviour
 {
+    private SoundManager soundManager;
     public List<GameObject> targets;
     public TextMeshProUGUI scoreText;
     public TextMeshProUGUI gameOverText;
     public Button restartButton;
     public GameObject titleScreen;
-    public ParticleSystem tapParticle;  // ADD THIS
+    public ParticleSystem tapParticle;
+    public ParticleSystem wowParticle;
     
     private int score;
+    private int milestoneInterval = 200;
     private float spawnRate = 1.5f;
     private bool gameOver = false;
     
     void Start()
     {
-
+        soundManager = GameObject.Find("Sound Manager").GetComponent<SoundManager>();
     }
 
     void Update()
@@ -31,8 +34,7 @@ public class GameManager : MonoBehaviour
             ShowTapFeedback(Input.mousePosition);
         }
     }
-
-    // ADD THIS METHOD
+    
     void ShowTapFeedback(Vector3 screenPosition)
     {
         // Convert screen position to world position
@@ -56,8 +58,31 @@ public class GameManager : MonoBehaviour
 
     public void UpdateScore(int scoreToAdd)
     {
+        int previousScore = score;
         score += scoreToAdd;
         scoreText.text = "SCORE: " + score;
+    
+        // Check if we've crossed a milestone
+        int previousMilestone = previousScore / milestoneInterval;
+        int currentMilestone = score / milestoneInterval;
+    
+        if (currentMilestone > previousMilestone && score >= milestoneInterval)
+        {
+            PlayWowEffect();
+        }
+    }
+    
+    public void PlayWowEffect()
+    {
+        soundManager.PlayWowSound();
+        Vector3 pos = new Vector3(0, 5, 0);
+    
+        if (score >= milestoneInterval && !gameOver)
+        {
+            int currentMilestone = score / milestoneInterval;
+            Debug.Log("Player reached milestone " + currentMilestone + " (Score: " + score + ") Congratulations!");
+            Instantiate(wowParticle, pos, Quaternion.identity);
+        }
     }
     
     public void GameOver()
